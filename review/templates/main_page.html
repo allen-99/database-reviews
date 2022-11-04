@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-primary">
+          <p class="title">It is easy</p>
+          <p class="subtitle">...to know what people thinks about your company</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+         <article class="tile is-child notification is-info">
+          <p class="title">You can choose</p>
+          <p class="subtitle">...searching platforms and sites</p>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-grey-light">
+        <p class="title">Topics!</p>
+        <p class="subtitle">Different topics for analysis</p>
+        <div class="content">
+          <!-- Content -->
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-grey-lighter">
+      <p class="title">Visible result</p>
+      <p class="subtitle"></p>
+      <figure class="image is-4by3">
+        <img src="https://bulma.io/images/placeholders/640x480.png">
+      </figure>
+    </article>
+  </div>
+</div>
+<a role='button' href="{{ url_for('main.add_request')}}" class="button is-medium is-fullwidth is-primary is-outlined">
+    try!
+</a>
+    </div>
+
+{% endblock %}

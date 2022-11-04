@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="hero-body">
+<div class="container is-max-desktop">
+    <h3 class="title">Add request</h3>
+    <br>
+        <form method="POST" action="/add">
+        <div class="field mb-5">
+           <b class="sear-head editContent mgb-medium">Company: </b>
+            <ul class="w3layouts-box-list">
+                {% for company in companies %}
+                    <div>
+                        <input type="radio" class="checked" name="company" value="{{ company.company_id }}"/>
+                        {{ company.company_name }}
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+         <div class="field mb-5">
+            <b class="sear-head editContent mgb-medium" style="padding-bottom: 30px">Platforms: </b>
+                <ul class="w3layouts-box-list">
+                    {% for platform in platforms %}
+                        <div class="w3layouts-box-list">
+                            <input type="checkbox" class="checked" name="platform" value="{{ platform.platform_id }}">
+                            {{ platform.platform_name }}
+                        </div>
+                    {% endfor %}
+                </ul>
+          </div>
+        <div class="field mb-5" style="max-width: 200px">
+             <b class="sear-head editContent mgb-medium">Date begin: </b>
+             <input class="input" type="text" placeholder="01.01.2001" value="">
+        </div>
+        <div class="field mgb-medium" style="max-width: 200px">
+             <b class="sear-head editContent mgb-medium">Date end: </b>
+             <input class="input" type="text" placeholder="01.01.2001" value="">
+             <p class="help">Leave the field blank if you don't want to set a date range</p>
+        </div>
+
+        <div class="field mb-5">
+            <b class="sear-head editContent mgb-medium" style="padding-bottom: 30px">Themes: </b>
+                <ul class="w3layouts-box-list">
+                    {% for theme in themes %}
+                        <div class="w3layouts-box-list">
+                            <input type="checkbox" class="checked" name="theme" value="{{ theme.theme_id }}">
+                            {{ theme.theme_name }}
+                        </div>
+                    {% endfor %}
+                </ul>
+          </div>
+        <button type="submit" class="button is-success is-outlined" style="margin-top: 20px">Create request</button>
+        </form>
+</div>
+    </div>
+{% endblock %}
