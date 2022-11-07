@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="hero-body">
+<div class="hero-body">
 <div class="container is-max-desktop">
     <h3 class="title">Add request</h3>
     <br>
-        <form method="POST" action="/add">
+        <form action="/add" method="post" enctype="multipart/form-data">
+        {% if current_user.is_authenticated %}
         <div class="field mb-5">
            <b class="sear-head editContent mgb-medium">Company: </b>
             <ul class="w3layouts-box-list">
                 {% for company in companies %}
                     <div>
-                        <input type="radio" class="checked" name="company" value="{{ company.company_id }}"/>
+                        <input type="radio" class="checked" name="company" value="{{company.company_id }}"/>
                         {{ company.company_name }}
                     </div>
                 {% endfor %}
@@ -29,11 +30,11 @@
           </div>
         <div class="field mb-5" style="max-width: 200px">
              <b class="sear-head editContent mgb-medium">Date begin: </b>
-             <input class="input" type="text" placeholder="01.01.2001" value="">
+             <input class="input" type="text" placeholder="01.01.2001" name="datebegin">
         </div>
         <div class="field mgb-medium" style="max-width: 200px">
              <b class="sear-head editContent mgb-medium">Date end: </b>
-             <input class="input" type="text" placeholder="01.01.2001" value="">
+             <input class="input" type="text" placeholder="01.01.2001" name="dateend">
              <p class="help">Leave the field blank if you don't want to set a date range</p>
         </div>
 
@@ -42,14 +43,15 @@
                 <ul class="w3layouts-box-list">
                     {% for theme in themes %}
                         <div class="w3layouts-box-list">
-                            <input type="checkbox" class="checked" name="theme" value="{{ theme.theme_id }}">
+                            <input type="checkbox" class="checked" name="themes" value="{{ theme.theme_id }}">
                             {{ theme.theme_name }}
                         </div>
                     {% endfor %}
                 </ul>
           </div>
         <button type="submit" class="button is-success is-outlined" style="margin-top: 20px">Create request</button>
+        {% endif %}
         </form>
 </div>
-    </div>
+</div>
 {% endblock %}

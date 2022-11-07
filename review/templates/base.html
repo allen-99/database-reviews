@@ -20,7 +20,7 @@
                 </a>
 
                 {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('main.add_request') }}" class="navbar-item">
+                    <a href="{{ url_for('main.add_request_form') }}" class="navbar-item">
                         Add request
                     </a>
                 {% endif %}
