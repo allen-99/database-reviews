@@ -6,7 +6,7 @@ import json
 from flask import render_template, Blueprint, redirect, url_for, request
 from flask_login import login_required, current_user
 
-from review.models.getters import get_themes_name, get_company_name, get_platforms_name
+from review.models.getters import get_themes_name, get_company_name, get_platforms_name, get_all_themes
 from review.models.models import Company, Platform, Theme
 from review.diagrams.create_diagrame import create_diagram
 
@@ -37,6 +37,8 @@ def add_request():
     datebegin = request.form.get('datebegin')
     dateend = request.form.get('dateend')
     themes = request.form.getlist('themes')
+    if not company or not platforms or not themes:
+        return redirect(url_for('main.add_request_form'))
 
     if not datebegin == '' and not dateend == '':
         try:
@@ -60,7 +62,6 @@ def result(data):
     themes = get_themes_name(data[0])
     company = get_company_name(data[3])
     platforms = get_platforms_name(data[4])
-    print(platforms)
     path = f'${current_user.id}.png'
     return render_template('schedule.html',
                            path=path,
@@ -68,3 +69,10 @@ def result(data):
                            platforms=platforms,
                            themes=themes,
                            company=company)
+
+
+@main.route('/themes', methods=['GET'])
+def show_themes():
+    themes = get_all_themes()
+    len_t = len(themes)
+    return render_template('show_themes.html', themes=themes, len=len_t)

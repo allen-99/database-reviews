@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content hero-body container">
+    <h3 class="title is-3" style="margin-right: 20px">All topic, that you can use</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Position">#</abbr></th>
+            <th>Topic name</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in range(len) %}
+        <tr>
+        <th>{{ i + 1 }}</th>
+        <td>{{ themes[i][0]}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

@@ -18,3 +18,7 @@ def get_company_name(company_id):
 
 def get_platforms_name(list_of_platforms_id):
     return db.session.execute(select(Platform.platform_name).where(Platform.platform_id.in_(list_of_platforms_id))).all()
+
+
+def get_all_themes():
+    return db.session.execute(select(Theme.theme_name)).all()
